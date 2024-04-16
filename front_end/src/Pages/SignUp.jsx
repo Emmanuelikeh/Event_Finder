@@ -43,10 +43,16 @@ const SignUpPage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        console.log('User created successfully');
-        // Redirect the user to the login page
-        window.location.href = '/login';
+        if(data.error){
+          console.log(data.error);
+          return;
+        }
+        else{
+          console.log(data);
+          console.log('User created successfully');
+          // Redirect the user to the login page
+          window.location.href = '/login';
+        }
       })
       .catch((err) => {
         console.log(err);
