@@ -253,6 +253,15 @@ FROM
           throw error;
         }
       }
+
+    static async updateEvent(EventID, EventName, EventDescription, EventDate, StartTime, EndTime, VenueID, OrganizerID) {
+        const query = `UPDATE events SET eventname = ?, eventdescription = ?, eventdate = ?, starttime = ?, endtime = ?, venueid = ?, organizerid = ? WHERE eventid = ?`;
+        try {
+            await dbConnection.query(query, [EventName, EventDescription, EventDate, StartTime, EndTime, VenueID, OrganizerID, EventID]);
+        } catch (error) {
+            throw error;
+        }
+    }
       
 
 
@@ -270,6 +279,7 @@ FROM
             throw error;
         }
     }
+
 
 }
 

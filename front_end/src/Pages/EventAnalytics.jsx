@@ -5,11 +5,18 @@ import { useLocation } from 'react-router-dom';
 const EventAnalytics = () => {
 
   const location = useLocation();
-  const { EventID, EventName,EventDate,Location, Capacity } = location.state;
+  let { EventID, EventName,EventDate,Location, Capacity } = location.state;
   const [attendee, setAttendee] = useState([]);
   const [signupData, setSignupData] = useState([]);
   const [attendeeData, setAttendeeData] = useState([]);
   const [totalAttendees, setTotalAttendees] = useState(0);
+
+
+  // modify the event data to formattted dates
+  const eventDate = new Date(EventDate);
+  const options = { month: 'short', day: 'numeric', year: 'numeric' };
+  EventDate = eventDate.toLocaleDateString('en-US', options);
+
 
 
   useEffect(() => {
@@ -73,6 +80,14 @@ const EventAnalytics = () => {
 
   }, [EventID]);
 
+  // modify the signupdate dates to formattted dates
+  const signupDataFormatted = signupData.map((data) => {
+    const date = new Date(data.date);
+    const options = { month: 'short', day: 'numeric' };
+    return { date: date.toLocaleDateString('en-US', options), count: data.count };
+  });
+
+
   return (
     <div className="container mt-4">
       <h1 className="text-center mb-4">Event Analytics</h1>
@@ -105,7 +120,7 @@ const EventAnalytics = () => {
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Sign-up Progress</h5>
-              <BarChart width={500} height={300} data={signupData}>
+              <BarChart width={500} height={300} data={signupDataFormatted}>
                 <XAxis dataKey="date" />
                 <YAxis />
                 <Tooltip />

@@ -103,9 +103,6 @@ const OrganizationDashboard = () => {
         <div className="card-body">
           <h5 className="card-title">Total Events: {counts.eventCount}</h5>
           <p className="card-text">Total Attendees: {counts.attendeeCount}</p>
-          <Link to="/organization/analytics" className="btn btn-primary">
-            View Total Event Analytics
-          </Link>
         </div>
       </div>
       <h2 className="mt-4">Individual Event Analytics</h2>
