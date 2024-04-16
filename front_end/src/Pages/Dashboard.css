@@ -1,0 +1,72 @@
+.container {
+    background-color: #f8f9fa; /* Light background for the entire container */
+    padding: 20px;
+    border-radius: 8px;
+    margin-left: calc(250px + 2rem); /* Sidebar width plus some extra space */
+  }
+  
+  h1, h2 {
+    color: #333;
+    margin-bottom: 20px; /* Consistent spacing below headers */
+  }
+  
+  .card {
+    background-color: #fff; /* White background for cards */
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    margin-bottom: 20px; /* Space between cards */
+  }
+  
+  .card-body {
+    padding: 20px; /* Spacious padding inside cards */
+  }
+  
+  .card-title {
+    color: #007bff; /* Theme color for titles */
+    margin-bottom: 10px; /* Space below the title */
+  }
+  
+  .card-text {
+    color: #666; /* Soft color for text for easier readability */
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  .row {
+    margin-right: 0;
+    margin-left: 0; /* Remove default row margins */
+  }
+  
+  .col-md-4 {
+    padding: 0 15px; /* Proper padding for columns */
+  }
+  
+  /* Styling for the chart container to ensure it's visually appealing */
+  .chart-container {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .col-md-4 {
+      flex: 0 0 100%;
+      max-width: 100%; /* Full width on small screens */
+    }
+  }
+  
