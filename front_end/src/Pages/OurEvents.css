@@ -1,0 +1,110 @@
+.container {
+  padding: 20px;
+  background-color: #f8f9fa; /* Light grey background for slight contrast */
+  min-height: 100vh; /* Full viewport height */
+  margin-left: calc(250px + 2rem); /* Sidebar width plus some extra space */
+}
+
+h1 {
+  color: #343a40; /* Dark grey for better readability */
+  font-size: 28px; /* Slightly larger font size for headings */
+  text-align: center; /* Centered heading */
+}
+
+.input-search {
+  max-width: 300px; /* Limit width of search box */
+  border-radius: 20px; /* Rounded borders for modern look */
+  border: 2px solid #007bff; /* Thicker border with theme color */
+  transition: all 0.3s ease-in-out; /* Smooth transition for focus effect */
+}
+
+.input-search:focus {
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.8); /* Focus effect with a light glow */
+}
+
+.card {
+  background: linear-gradient(145deg, #ffffff, #e6e6e6); /* Subtle gradient for card background */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Deeper shadow for a 3D effect */
+  border: none;
+  border-radius: 12px; /* More pronounced rounded corners */
+  overflow: hidden; /* Ensures no overflow from child elements */
+  transition: transform 0.3s ease-in-out; /* Smooth transform on hover */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Slight raise effect on hover */
+}
+
+.card-body {
+  padding: 15px; /* Increased padding for better spacing */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  color: #0056b3; /* A darker shade of blue for better contrast */
+  font-weight: bold; /* Bold font for emphasis */
+}
+
+.card-text {
+  color: #343a40; /* Darker text color for better readability */
+  line-height: 1.6; /* Improved line spacing for readability */
+}
+
+.btn {
+  border-radius: 8px; /* Uniform rounded corners for all buttons */
+  padding: 8px 12px; /* Consistent padding across all buttons */
+  font-size: 14px; /* Uniform font size */
+  margin: 5px; /* Consistent margin around buttons */
+  transition: background-color 0.2s, border-color 0.2s; /* Smooth transition for hover effects */
+  flex: 1; /* Ensures buttons take equal space */
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: 1px solid #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  border: 1px solid #17a2b8;
+}
+
+.btn-info:hover {
+  background-color: #138496;
+  border-color: #117a8b;
+}
+
+.d-flex {
+  justify-content: space-between;
+  align-items: center; /* Center alignment of buttons and text */
+}
+
+.row {
+  margin-top: 20px; /* Increased top margin for better spacing */
+}
+
+@media (max-width: 768px) {
+  .input-search {
+    width: 100%;
+  }
+
+  .card-body {
+    padding: 10px; /* Slightly reduced padding on smaller screens */
+  }
+}

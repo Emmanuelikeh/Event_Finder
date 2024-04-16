@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Bar } from 'react-chartjs-2';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'chart.js/auto';
+import './Dashboard.css';  // Ensure the CSS file is correctly imported
 
 const OrganizationDashboard = () => {
   // Example data for organization's events and analytics
@@ -29,6 +30,15 @@ const OrganizationDashboard = () => {
         data: events.map(event => event.attendees)
       }
     ]
+  };
+
+  const options = {
+    maintainAspectRatio: false,
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
   };
 
   return (
@@ -60,21 +70,10 @@ const OrganizationDashboard = () => {
         ))}
       </div>
       <h2 className="mt-4">Attendance Chart</h2>
-      <div className="mt-4">
+      <div className="chart-container mt-4">
         <Bar
           data={chartData}
-          options={{
-            maintainAspectRatio: false,
-            scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    beginAtZero: true
-                  }
-                }
-              ]
-            }
-          }}
+          options={options}
         />
       </div>
     </div>

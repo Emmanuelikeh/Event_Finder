@@ -1,0 +1,117 @@
+.container {
+  max-width: 1300px; /* Optimal line length for readability */
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  margin: 2rem auto; /* Center the form container */
+  margin-left: calc(250px + 2rem); /* Sidebar width plus some extra space */
+}
+
+h1 {
+  text-align: center;
+  color: #007bff;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control,
+.btn,
+.select {
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus,
+.btn:focus,
+.select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+.form-control {
+  padding: 0.75rem;
+  border: 1px solid #ced4da;
+}
+
+.btn {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  margin: 0.375rem;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+textarea.form-control {
+  min-height: 150px; /* More space for text input */
+}
+
+.ticket-option {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+}
+
+.error {
+  border-color: #dc3545;
+}
+
+.error-message {
+  color: #dc3545;
+  margin-top: 0.5rem;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem; /* Space between flex items */
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 576px) {
+  .d-flex {
+    flex-direction: column;
+  }
+
+  .mr-2,
+  .ml-2 {
+    margin: 0;
+  }
+}
