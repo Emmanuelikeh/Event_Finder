@@ -6,6 +6,7 @@ class Bookings {
         const query = `INSERT INTO bookings (eventid, attendeeid, ticketid, bookingdatetime, paymentstatus) VALUES (?, ?, ?, ?, ?)`;
         try {
             await dbConnection.query(query, [EventID, AttendeeID, TicketID, BookingDateTime, PaymentStatus]);
+            return "Booking created successfully";
         } catch (error) {
             console.log(error)
             throw error;

@@ -71,15 +71,22 @@ const BookingPage = () => {
 
     try {
       // Send bookingData to backend
-      await fetch('http://localhost:5001/api/bookings/createBooking', {
+      const response = await fetch('http://localhost:5001/api/bookings/createBooking', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
             authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(bookingData),
-      });
+      })
 
+      if (response.ok) {
+        // Redirect to the desired page
+        window.location.href = '/students-available-events';
+      } else {
+        const error = await response.json();
+        console.error('Error creating booking:', error);
+      }
       // Clear form fields
       setSelectedTicket(null);
       setPaymentInfo({
@@ -87,6 +94,7 @@ const BookingPage = () => {
         expirationDate: '',
         cvv: '',
       });
+    
     } catch (error) {
       console.error('Error creating booking:', error);
     }
