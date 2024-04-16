@@ -11,6 +11,11 @@ router.post('/create', auth, async (req, res) => {
     console.log(eventName, eventDescription, eventDate, eventStartTime, eventEndTime, venueId, organizerID, ticketOptions);
 
     try {
+        // check if the venue is available
+        const isVenueAvailable = await Event.isVenueAvailable(eventDate, eventStartTime, eventEndTime);
+        if (!isVenueAvailable) {
+            return res.status(400).json({ message: 'Venue is not available for the selected date and time' });
+        }
         const eventId = await Event.createEvent(eventName, eventDescription, eventDate, eventStartTime, eventEndTime, venueId, organizerID);
         console.log("Event ID is", eventId);
         for (let i = 0; i < ticketOptions.length; i++) {

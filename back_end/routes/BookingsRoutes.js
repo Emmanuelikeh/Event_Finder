@@ -1,12 +1,20 @@
 const router = require('express').Router();
 const auth = require('../middleware/UserAuth');
 const Booking = require('../models/Bookings');
+const Ticket = require('../models/Ticket');
 
 
 router.post('/createBooking', auth, async (req, res) => {
     const { EventID, AttendeeID, TicketID, BookingDateTime, PaymentStatus } = req.body; 
     try {
+        // check if the ticket is available
+        const isTicketAvailable = await Ticket.isTicketAvailable(TicketID);
+        if (!isTicketAvailable) {
+            return res.status(400).json({ message: 'Ticket is not available' });
+        }
         const booking = await Booking.createBooking(EventID, AttendeeID, TicketID, BookingDateTime, PaymentStatus);
+        // update ticket quantity
+        const ticket = await Ticket.reduceAvailableQuantity(TicketID);
         res.json(booking);
     } catch (error) {
         res.status(500).json({ error }); 

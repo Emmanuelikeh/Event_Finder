@@ -148,7 +148,15 @@ const CreateEventForm = () => {
         ticketOptions: formData.ticketOptions,
       }),
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return response.json().then(data => {
+            alert(data.message);
+          });
+        }
+      })
       .then(data => {
         alert(data.message);
         // Redirect the user to the dashboard
@@ -156,7 +164,6 @@ const CreateEventForm = () => {
       })
       .catch(error => {
         console.error('Error creating event:', error);
-        alert('An error occurred. Please try again.');
       });
 
       // Clear the form

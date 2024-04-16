@@ -7,8 +7,6 @@ import 'chart.js/auto';
 import './Dashboard.css';  // Ensure the CSS file is correctly imported
 
 const OrganizationDashboard = () => {
-  // Example data for organization's events and analytics
-  //get user from local storage
   const user = JSON.parse(localStorage.getItem('user'));
   const organizationName = user.username;
   const organizerID = user.id;
@@ -17,12 +15,6 @@ const OrganizationDashboard = () => {
   const [counts, setCounts] = useState([]);
   const [events, setEvents] = useState([]);
   const [data, setData] = useState([]);
-
-  // const events = [
-  //   { id: 1, name: 'Interview Prep', attendees: 40 },
-  //   { id: 2, name: 'Hackathon', attendees: 60 },
-  //   { id: 3, name: 'Resume Review', attendees: 20 }
-  // ];
 
   // Data for the attendance chart
   const chartData = {

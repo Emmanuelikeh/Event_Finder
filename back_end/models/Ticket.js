@@ -58,6 +58,27 @@ class Tickets {
         }
     }
 
+    // reduce available quantity of a ticket
+    static async reduceAvailableQuantity(TicketID) {
+        const query = `UPDATE tickets SET availablequantity = availablequantity - 1 WHERE ticketid = ${TicketID}`;
+        try {
+            await dbConnection.query(query);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    // check if ticket are available . i.e. available quantity is greater than 0
+    static async isTicketAvailable(TicketID) {
+        const query = `SELECT availablequantity FROM tickets WHERE ticketid = ${TicketID}`;
+        try {
+            const rows = await dbConnection.query(query);
+            return rows[0][0].AvailableQuantity > 0;
+        } catch (error) {
+            throw error;
+        }
+    }
+
 
 }
 

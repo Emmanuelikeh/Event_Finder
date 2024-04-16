@@ -231,6 +231,28 @@ FROM
           throw error;
         }
       }
+
+      // check if an event has been booked a venue for that date and time 
+      static async isVenueAvailable(date, startTime, endTime) {
+        try {
+          const query = `
+            SELECT COUNT(*) AS count
+            FROM Events
+            WHERE EventDate = '${date}'
+              AND (
+                (StartTime >= '${startTime}' AND StartTime < '${endTime}')
+                OR (EndTime > '${startTime}' AND EndTime <= '${endTime}')
+                OR (StartTime <= '${startTime}' AND EndTime >= '${endTime}')
+              )
+          `;
+      
+          const result = await dbConnection.query(query);
+          return result[0][0].count === 0;
+        } catch (error) {
+          console.error('Error checking venue availability:', error);
+          throw error;
+        }
+      }
       
 
 
