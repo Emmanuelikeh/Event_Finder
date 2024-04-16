@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 const EventAnalytics = () => {
 
   const location = useLocation();
-  const { EventID, EventName, EventDescription, EventDate, StartTime, EndTime, VenueName, Location, Capacity } = location.state;
+  const { EventID, EventName,EventDate,Location, Capacity } = location.state;
   const [attendee, setAttendee] = useState([]);
   const [signupData, setSignupData] = useState([]);
   const [attendeeData, setAttendeeData] = useState([]);

@@ -82,6 +82,7 @@ router.get('/getEventAndAttendeeCount/:userID', auth, async (req, res) => {
     const UserID = req.params.userID;
     try {
         const events = await Event.getThreeEventsByOrganizer(UserID);
+        console.log("Events are", events);
         res.json(events);
     } catch (error) {
         res.status(500).json({ error });

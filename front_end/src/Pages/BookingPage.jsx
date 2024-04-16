@@ -162,7 +162,7 @@ const BookingPage = () => {
                 </select>   
               </div>
             </div>
-            {selectedTicket?.TicketPrice > 0 && (
+            {selectedTicket?.Price > 0 && (
               <div className="col-md-6">
                 <h3>Payment</h3>
                 <div className="mb-3">
