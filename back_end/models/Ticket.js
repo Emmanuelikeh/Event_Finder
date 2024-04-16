@@ -35,14 +35,23 @@ class Tickets {
 
     // get ticket type and count for an event
     static  async  getTicketCount(EventID) {
-        const query = `
-        SELECT TicketType, COUNT(*) AS count
-        FROM Tickets
-        WHERE EventID = ${EventID}
-        GROUP BY TicketType
-      `;
+        const query = `SELECT 
+        t.TicketType,
+        COUNT(*) AS TicketCount
+      FROM 
+        Bookings b
+      JOIN
+        Tickets t ON b.TicketID = t.TicketID
+      WHERE 
+        b.EventID = ${EventID}
+      GROUP BY 
+        t.TicketType
+      ORDER BY 
+        TicketCount DESC;
+    `;
         try {
-            const rows = await dbConnection.query(query, [EventID]);
+            const rows = await dbConnection.query(query);
+            console.log(rows[0]);
             return rows[0];
         } catch (error) {
             throw error;

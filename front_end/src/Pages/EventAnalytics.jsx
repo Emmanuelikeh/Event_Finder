@@ -96,7 +96,7 @@ const EventAnalytics = () => {
                 <Tooltip />
                 <Legend />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Bar dataKey="count" fill="#8884d8" />
+                <Bar dataKey="TicketCount" fill="#8884d8" />
               </BarChart>
             </div>
           </div>
