@@ -184,6 +184,53 @@ FROM
     }
 
 
+// get the total number of events and the tota number of people that have attending a event for a specific organizer
+    static async getEventAndAttendeeCount(OrganizerID) {
+        const query = `SELECT 
+        (SELECT COUNT(*) FROM Events WHERE OrganizerID = ${OrganizerID}) AS eventCount,
+        (SELECT COUNT(*) FROM Bookings 
+         WHERE EventID IN (SELECT EventID FROM Events WHERE OrganizerID = ${OrganizerID})) AS attendeeCount;`
+
+        try {
+            const rows = await dbConnection.query(query);
+            return rows[0];
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+
+    // get at most three events by and organizer
+    static async getThreeEventsByOrganizer(OrganizerID) {
+        const query = `
+          SELECT
+            e.EventID,
+            e.EventName,
+            e.EventDescription,
+            e.EventDate,
+            e.StartTime,
+            e.EndTime,
+            v.VenueName,
+            v.Location,
+            v.Capacity
+          FROM
+            Events e
+          JOIN
+            Venues v ON e.VenueID = v.VenueID
+          WHERE
+            e.OrganizerID = ${OrganizerID}
+          LIMIT 3
+        `;
+        try {
+            const rows = await dbConnection.query(query);
+            return rows[0];
+        } catch (error) {
+            throw error;
+        }
+    }
+      
+
+
     // create an event
     static async createEvent(EventName, EventDescription, EventDate, StartTime, EndTime, VenueID, OrganizerID) {
         console.log("Event details is", EventName, EventDescription, EventDate, StartTime, EndTime, VenueID, OrganizerID);
