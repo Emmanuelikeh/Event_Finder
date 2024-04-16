@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import './CreateEvent.css';
 const CreateEventForm = () => {
   const [formData, setFormData] = useState({
     eventName: '',

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate } from "react-router-dom";
+import './OurEvents.css';
 
 const OurEvents = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -124,7 +125,7 @@ const OurEvents = () => {
                     Delete
                   </button>
                   {/* // const {EventID, EventName, EventDescription, EventDate, StartTime, EndTime, VenueName, Location , Capacity  } */}
-                  <button onClick={() => handleViewAnalytics(event.EventID, event.EventName, event.EventDescription, event.EventDate, event.StartTime, event.EndTime, event.VenueName, event.Location, event.Capacity)}>
+                  <button className="btn btn-success mx-2" onClick={() => handleViewAnalytics(event.EventID, event.EventName, event.EventDescription, event.EventDate, event.StartTime, event.EndTime, event.VenueName, event.Location, event.Capacity)}>
                     View Analytics
                   </button>
 
