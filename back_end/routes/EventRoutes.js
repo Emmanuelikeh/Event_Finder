@@ -43,6 +43,20 @@ router.get('/getAvailableEvents/:userID', auth, async (req, res) => {
     }
 })
 
+// get events by id
+router.get('/getEvent/:eventID', auth, async (req, res) => {
+    const eventID = req.params.eventID;
+    console.log("Event ID is", eventID);
+    try {
+        const event = await Event.getEventById(eventID);
+        console.log("Event is", event);
+        res.json(event[0]);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+})
+
+
 // get all events and return a new  value isregistered if the user has registered for the event
 router.get('/getIsRegisteredEvents/:userID', auth, async (req, res) => {
     const userID = req.params.userID;
@@ -131,14 +145,15 @@ router.get('/registered/:userID', auth, async (req, res) => {
 })
 
 // update events
-router.put('/:eventID', auth, async (req, res) => {
-    const event_id = req.params.EventID;
-    const {EventDesciption, EventDate, StartTime, EndTime, VenueID, OrganizerID } = req.body;
+router.put('/updateEvents', auth, async (req, res) => {
+    const {EventID, EventName, EventDescription, EventDate, StartTime, EndTime } = req.body;
+    console.log(EventID, EventName, EventDescription, EventDate, StartTime, EndTime);
     try {
-        await Event.updateEvent(event_id, EventDesciption, EventDate, StartTime, EndTime, VenueID, OrganizerID);
-        res.json({ message: 'Event updated successfully' });
+        const result = await Event.updateEvent(EventID, EventName, EventDescription, EventDate, StartTime, EndTime);
+        res.json({ message: 'Event updated successfully' }); 
     } catch (error) {
         res.status(500).json({ error });
+        console.log(error)
     }
 })
 

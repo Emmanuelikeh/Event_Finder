@@ -63,7 +63,7 @@ const OurEvents = () => {
   };
   const handleEditEvent = (eventId) => {
     // Handle editing event logic here
-    console.log(`Edit event with ID ${eventId}`);
+    navigate(`/edit-event/${eventId}`);
   };
 
   const handleDeleteEvent = (eventId) => {
@@ -113,7 +113,7 @@ const OurEvents = () => {
                   <button
                     className="btn btn-primary"
                     style={{ flex: "1" }}
-                    onClick={() => handleEditEvent(event.id)}
+                    onClick={() => handleEditEvent(event.EventID)}
                   >
                     Edit
                   </button>

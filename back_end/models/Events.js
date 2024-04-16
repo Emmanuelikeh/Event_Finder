@@ -32,6 +32,17 @@ class Events {
         }
     }
 
+    static async getEventById(EventID) {
+        const query = `SELECT * FROM events WHERE eventid = ${EventID}`;
+        try {
+            const rows = await dbConnection.query(query);
+            return rows[0];
+        } catch (error) {
+            throw error;
+        }
+    }
+
+
     static async getAvailableEvents(userID) {
         // similar to the above function, but only returns events that have not yet occurred i.e does not pass the current date and time
         console.log("User ID is", userID)
@@ -256,10 +267,18 @@ FROM
         }
       }
 
-    static async updateEvent(EventID, EventName, EventDescription, EventDate, StartTime, EndTime, VenueID, OrganizerID) {
-        const query = `UPDATE events SET eventname = ?, eventdescription = ?, eventdate = ?, starttime = ?, endtime = ?, venueid = ?, organizerid = ? WHERE eventid = ?`;
+    static async updateEvent(EventID, EventName, EventDescription, EventDate, StartTime, EndTime) {
+        const query = `UPDATE events
+        SET eventname = '${EventName}',
+            eventdescription = '${EventDescription}',
+            eventdate = '${EventDate}',
+            startTime = '${StartTime}',
+            endTime = '${EndTime}'
+        WHERE eventid = ${EventID}`;
         try {
-            await dbConnection.query(query, [EventName, EventDescription, EventDate, StartTime, EndTime, VenueID, OrganizerID, EventID]);
+            const response =  await dbConnection.query(query); 
+            console.log(response)
+            return response;
         } catch (error) {
             throw error;
         }
