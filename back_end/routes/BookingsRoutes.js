@@ -34,7 +34,7 @@ router.get('/getAttendees/:EventID', auth, async (req, res) => {
     }
 })
 
-
+ // get date and  count of attendees for an event
 router.get('/getAttendeesCount/:EventID', auth, async (req, res) => {
     const EventID = req.params.EventID;
     try {
@@ -45,6 +45,19 @@ router.get('/getAttendeesCount/:EventID', auth, async (req, res) => {
         res.status(500).json({ error });
     }
 })
+
+ // get the count of bookings for at most three events for an organizer, should return the event name and the count of bookings
+ router.get('/getThreeEventsBookings/:organizerID', auth, async (req, res) => {
+    const OrganizerID = req.params.organizerID;
+    try {
+        const bookings = await Booking.getThreeEventsBookings(OrganizerID);
+        console.log("Bookings are", bookings);
+        res.json(bookings);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+}
+)
 
 router.get('/getBookingsCount/:EventID', auth, async (req, res) => {
     const EventID = req.params.EventID;

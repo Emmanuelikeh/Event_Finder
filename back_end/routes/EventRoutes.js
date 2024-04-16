@@ -65,6 +65,29 @@ router.get('/getevents/:userID', auth, async (req, res) => {
     }
 })
 
+// get the total number of events and the tota number of people that have attending a event for a specific organizer
+router.get('/getEventAndAttendeeCount/:userID', auth, async (req, res) => {
+    const OrganizerID = req.params.userID;
+    try {
+        const events = await Event.getEventAndAttendeeCount(OrganizerID);
+        res.json(events[0]);   
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+})
+
+
+ // get at most three events by and organizer
+ router.get("/getThreeEvents/:userID", auth, async (req, res) => {
+    const UserID = req.params.userID;
+    try {
+        const events = await Event.getThreeEventsByOrganizer(UserID);
+        res.json(events);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+})
+
 
 // get events by name
 router.get('/name/:eventName', auth, async (req, res) => {

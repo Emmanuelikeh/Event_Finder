@@ -98,6 +98,26 @@ class Bookings {
         }
     }
 
+    // get the count of bookings for at most three events for an organizer, should return the event name and the count of bookings
+    static async getThreeEventsBookings(OrganizerID) {
+        console.log("Getting booking count for organizer")
+        const query = `SELECT e.EventName, COUNT(*) AS count
+        FROM Bookings b
+        JOIN Events e ON b.EventID = e.EventID
+        WHERE e.OrganizerID = ${OrganizerID}
+        GROUP BY e.EventName
+        ORDER BY count DESC
+        LIMIT 3`
+        try {
+            const response = await dbConnection.query(query);
+            console.log(response[0]);
+            return response[0];
+        } catch (error) {
+            console.log(error)
+            throw error;
+        }
+    }
+
 }
 
 module.exports = Bookings;

@@ -200,8 +200,7 @@ FROM
         }
     }
 
-    // get at most three events by and organizer
-    static async getThreeEventsByOrganizer(OrganizerID) {
+    static async getThreeEventsByOrganizer(organizerId) {
         const query = `
           SELECT
             e.EventID,
@@ -212,22 +211,26 @@ FROM
             e.EndTime,
             v.VenueName,
             v.Location,
-            v.Capacity
+            v.Capacity,
+            (SELECT COUNT(*) FROM Bookings b WHERE b.EventID = e.EventID) AS attendees
           FROM
             Events e
           JOIN
             Venues v ON e.VenueID = v.VenueID
           WHERE
-            e.OrganizerID = ${OrganizerID}
+            e.OrganizerID = ${organizerId}
+          ORDER BY
+            e.EventDate DESC
           LIMIT 3
         `;
+      
         try {
-            const rows = await dbConnection.query(query);
-            return rows[0];
+          const [rows] = await dbConnection.query(query);
+          return rows;
         } catch (error) {
-            throw error;
+          throw error;
         }
-    }
+      }
       
 
 
