@@ -6,6 +6,7 @@ const Ticket = require('../models/Ticket');
 
 router.post('/createBooking', auth, async (req, res) => {
     const { EventID, AttendeeID, TicketID, BookingDateTime, PaymentStatus } = req.body; 
+    console.log(req.body)
     try {
         // check if the ticket is available
         const isTicketAvailable = await Ticket.isTicketAvailable(TicketID);
@@ -17,7 +18,7 @@ router.post('/createBooking', auth, async (req, res) => {
         const ticket = await Ticket.reduceAvailableQuantity(TicketID);
         res.json(booking);
     } catch (error) {
-        res.status(500).json({ error }); 
+        res.status(500).json({ error });  
     }
 })
 

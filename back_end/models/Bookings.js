@@ -1,8 +1,6 @@
 const dbConnection = require('../config/dbConnection');
 class Bookings {
     static async createBooking(EventID, AttendeeID, TicketID, BookingDateTime, PaymentStatus) {
-        console.log("Creating booking")
-
         const query = `INSERT INTO bookings (eventid, attendeeid, ticketid, bookingdatetime, paymentstatus) VALUES (?, ?, ?, ?, ?)`;
         try {
             await dbConnection.query(query, [EventID, AttendeeID, TicketID, BookingDateTime, PaymentStatus]);

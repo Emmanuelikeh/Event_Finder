@@ -36,6 +36,31 @@ const OrganizationDetailPage = () => {
     navigate('/booking', { state: { EventID, EventName, Location, Organizer, EventDescription, EventDate, StartTime, EndTime } });
   };
 
+  const formatDate = (date, startTime, endTime) => {
+    const eventDate = new Date(date);
+    const options = {month: 'long', day: 'numeric', year: 'numeric'};
+    const day = eventDate.toLocaleDateString('en-US', options);
+  
+    const startTimeArray = startTime.split(':');
+    const startHour = parseInt(startTimeArray[0]);
+    const startMinute = parseInt(startTimeArray[1]);
+    const startTimeDate = new Date(date);
+    startTimeDate.setHours(startHour, startMinute, 0, 0);
+  
+    const endTimeArray = endTime.split(':');
+    const endHour = parseInt(endTimeArray[0]);
+    const endMinute = parseInt(endTimeArray[1]);
+    const endTimeDate = new Date(date);
+    endTimeDate.setHours(endHour, endMinute, 0, 0);
+  
+    const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
+    const time = `${startTimeDate.toLocaleTimeString('en-US', timeOptions)} - ${endTimeDate.toLocaleTimeString('en-US', timeOptions)}`;
+  
+    return `${day}, ${time}`;
+  };
+
+  
+
 
   return (
     <Container>
@@ -59,7 +84,7 @@ const OrganizationDetailPage = () => {
             <Card key={event.EventID} className="mb-3">
               <Card.Body>
                 <Card.Title>{event.EventName}</Card.Title>
-                <Card.Text>Date: {"Today is Today"}</Card.Text>
+                <Card.Text>Date: {formatDate(event.EventDate,event.StartTime, event.EndTime)}</Card.Text>
                 <Button
                   variant={event.isRegistered === 1 ? 'success' : 'primary'}
                   disabled={event.isRegistered === 1}

@@ -119,6 +119,8 @@ FROM
     Events e
     LEFT JOIN Bookings b ON e.EventID = b.EventID AND b.AttendeeID = ${UserID}
     LEFT JOIN Venues v ON e.VenueID = v.VenueID
+    WHERE
+      e.EventDate >= CURDATE()
         `
         try {
             const rows = await dbConnection.query(query);

@@ -123,6 +123,7 @@ router.get('/registered/:userID', auth, async (req, res) => {
     console.log("User ID is", userID);
     try {
         const events = await Event.getAllRegisteredEvents(userID);
+        console.log(events)
         res.json(events);
     } catch (error) {
         res.status(500).json({ error });

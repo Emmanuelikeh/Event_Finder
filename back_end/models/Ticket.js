@@ -73,7 +73,9 @@ class Tickets {
         const query = `SELECT availablequantity FROM tickets WHERE ticketid = ${TicketID}`;
         try {
             const rows = await dbConnection.query(query);
-            return rows[0][0].AvailableQuantity > 0;
+            console.log(rows[0][0]);
+            console.log(rows[0][0].availablequantity);
+            return rows[0][0].availablequantity > 0;
         } catch (error) {
             throw error;
         }

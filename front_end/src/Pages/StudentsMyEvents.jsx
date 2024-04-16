@@ -33,6 +33,29 @@ const MyEvents = () => {
     fetchRsvpdEvents(); 
   }, []);
 
+  const formatDate = (date, startTime, endTime) => {
+    const eventDate = new Date(date);
+    const options = {month: 'long', day: 'numeric', year: 'numeric'};
+    const day = eventDate.toLocaleDateString('en-US', options);
+  
+    const startTimeArray = startTime.split(':');
+    const startHour = parseInt(startTimeArray[0]);
+    const startMinute = parseInt(startTimeArray[1]);
+    const startTimeDate = new Date(date);
+    startTimeDate.setHours(startHour, startMinute, 0, 0);
+  
+    const endTimeArray = endTime.split(':');
+    const endHour = parseInt(endTimeArray[0]);
+    const endMinute = parseInt(endTimeArray[1]);
+    const endTimeDate = new Date(date);
+    endTimeDate.setHours(endHour, endMinute, 0, 0);
+  
+    const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
+    const time = `${startTimeDate.toLocaleTimeString('en-US', timeOptions)} - ${endTimeDate.toLocaleTimeString('en-US', timeOptions)}`;
+  
+    return `${day}, ${time}`;
+  };
+
 
 
   const  handleCancelRSVP = async (eventId) => {
@@ -67,7 +90,7 @@ const MyEvents = () => {
             <div className="card h-100">
               <div className="card-body">
                 <h5 className="card-title">{event.EventName}</h5>
-                <p className="card-text">Date: {event.EventDate}</p>
+                <p className="card-text">Date: {formatDate(event.EventDate, event.StartTime, event.EndTime)}</p>
                 <p className="card-text">Location: {event.Location}</p>
                 <p className="card-text">Capacity: {100}</p>
                 <button className="btn btn-danger btn-block w-100" onClick={() => handleCancelRSVP(event.BookingID)}>
