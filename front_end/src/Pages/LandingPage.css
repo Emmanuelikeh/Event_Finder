@@ -1,0 +1,95 @@
+.landing-page {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .landing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #102E67; /* Collegiate navy */
+    color: white;
+  }
+  
+  .header-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .header-login {
+    padding: 0.5rem 1rem;
+    background-color: #F4BA13; /* Gold */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .header-login:hover {
+    background-color: #c99e11; /* Darker gold on hover */
+  }
+  
+  .tagline {
+    background-color: #f7f7f7;
+    padding: 4rem 2rem;
+  }
+  
+  .tagline h1 {
+    font-size: 2rem;
+    color: #102E67; /* Collegiate navy */
+  }
+  
+  .image-gallery {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem 0;
+    flex-wrap: wrap;
+  }
+  
+/* ... other styles ... */
+
+.gallery-item {
+    border: 3px solid #2A56DF; /* Athletic blue */
+    margin: 1rem;
+    padding: 1rem;
+    flex-basis: 30%; /* Adjusted for images */
+    height: 350px; /* Adjusted for images */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eaeaea;
+    border-radius: 8px;
+    position: relative; /* Needed for absolute positioning of the image */
+    overflow: hidden; /* Ensures the image doesn't overflow its container */
+  }
+  
+  .gallery-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  /* ... media query adjustments ... */
+  
+  .gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .image-gallery {
+      flex-direction: column;
+    }
+  
+    .gallery-item {
+      width: 80%;
+      margin: 1rem auto;
+    }
+  }
+  

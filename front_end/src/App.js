@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import LandingPage from './Pages/LandingPage';
 import LoginPage from './Pages/LoginPage';
 import SignUp from './Pages/SignUp';
 import Dashboard from './Pages/Dashboard';
@@ -20,7 +21,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path= "/Landing" element = {<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
